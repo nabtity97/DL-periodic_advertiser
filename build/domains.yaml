@@ -1,0 +1,7 @@
+default: periodic_adv
+build_dir: C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build
+domains:
+  - name: periodic_adv
+    build_dir: C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/periodic_adv
+flash_order:
+  - periodic_adv

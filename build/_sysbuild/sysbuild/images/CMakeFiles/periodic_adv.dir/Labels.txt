@@ -1,0 +1,13 @@
+# Target labels
+ periodic_adv
+# Source files and their labels
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/CMakeFiles/periodic_adv
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/CMakeFiles/periodic_adv.rule
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/CMakeFiles/periodic_adv-complete.rule
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/periodic_adv-prefix/src/periodic_adv-stamp/periodic_adv-build.rule
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/periodic_adv-prefix/src/periodic_adv-stamp/periodic_adv-configure.rule
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/periodic_adv-prefix/src/periodic_adv-stamp/periodic_adv-download.rule
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/periodic_adv-prefix/src/periodic_adv-stamp/periodic_adv-install.rule
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/periodic_adv-prefix/src/periodic_adv-stamp/periodic_adv-mkdir.rule
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/periodic_adv-prefix/src/periodic_adv-stamp/periodic_adv-patch.rule
+C:/ncs/v2.7.0/zephyr/samples/bluetooth/periodic_adv/build/_sysbuild/sysbuild/images/periodic_adv-prefix/src/periodic_adv-stamp/periodic_adv-update.rule
