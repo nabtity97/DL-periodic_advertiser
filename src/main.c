@@ -6,12 +6,14 @@
 
 #include <zephyr/bluetooth/bluetooth.h>
 
-static uint8_t mfg_data[] = { 0xff, 0xff, 0x00 };
+static uint8_t mfg_data[] = {0xff, 0xff, 0x00};
 
+// Periodic advertised Data
 static const struct bt_data per_adv_ad[] = {
 	BT_DATA(BT_DATA_MANUFACTURER_DATA, mfg_data, 3),
 };
 
+// Regular advertised data
 static const struct bt_data ad[] = {
 	BT_DATA(BT_DATA_NAME_COMPLETE, CONFIG_BT_DEVICE_NAME, sizeof(CONFIG_BT_DEVICE_NAME) - 1),
 };
@@ -48,7 +50,8 @@ int main(void)
 	err = bt_le_per_adv_set_param(adv, BT_LE_PER_ADV_DEFAULT);
 	if (err) {
 		printk("Failed to set periodic advertising parameters"
-		       " (err %d)\n", err);
+		       " (err %d)\n",
+		       err);
 		return 0;
 	}
 
@@ -59,15 +62,17 @@ int main(void)
 		return 0;
 	}
 
+	printk("Start Extended Advertising...\n");
+	err = bt_le_ext_adv_start(adv, BT_LE_EXT_ADV_START_DEFAULT);
+	if (err) {
+		printk("Failed to start extended advertising "
+				"(err %d)\n",
+				err);
+		return 0;
+	}
+	printk("done.\n");
+
 	while (true) {
-		printk("Start Extended Advertising...");
-		err = bt_le_ext_adv_start(adv, BT_LE_EXT_ADV_START_DEFAULT);
-		if (err) {
-			printk("Failed to start extended advertising "
-			       "(err %d)\n", err);
-			return 0;
-		}
-		printk("done.\n");
 
 		for (int i = 0; i < 3; i++) {
 			k_sleep(K_SECONDS(10));
@@ -85,16 +90,19 @@ int main(void)
 
 		k_sleep(K_SECONDS(10));
 
+		/* Commenting out the stop advertising logic to keep advertising active
 		printk("Stop Extended Advertising...");
 		err = bt_le_ext_adv_stop(adv);
 		if (err) {
 			printk("Failed to stop extended advertising "
-			       "(err %d)\n", err);
+			       "(err %d)\n",
+			       err);
 			return 0;
 		}
 		printk("done.\n");
 
 		k_sleep(K_SECONDS(10));
+		*/
 	}
 	return 0;
 }
