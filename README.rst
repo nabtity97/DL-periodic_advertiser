@@ -1,26 +1,4 @@
-.. _bluetooth-periodic-advertising-sample:
-
-Bluetooth: Periodic Advertising
+What I have done in this project? 
 ###############################
-
-Overview
-********
-
-A simple application demonstrating the BLE Periodic Advertising functionality.
-
-Requirements
-************
-
-* A board with BLE support
-
-Building and Running
-********************
-
-This sample can be found under :zephyr_file:`samples/bluetooth/periodic_adv` in
-the Zephyr tree.
-
-Use the sample found under :zephyr_file:`samples/bluetooth/periodic_sync` in the
-Zephyr tree that will scan and establish a periodic advertising synchronization
-to this sample.
-
-See :ref:`bluetooth samples section <bluetooth-samples>` for details.
+- Added the device name to the prj.conf CONFIG_BT_DEVICE_NAME="DL-Hesham", so we can configure the receiver to receive data only from this device
+- started the avertising only once and commented out stoping advertising function, so we keep the device advertising forever.
