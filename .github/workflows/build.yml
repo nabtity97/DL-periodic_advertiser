@@ -75,12 +75,18 @@ jobs:
     
     - name: Build
       run: |
-        west build -p auto -b nrf52840dk_nrf52840 .
+        west build -p auto -b nrf52840dk_nrf52840 . -- -DCONFIG_BOOTLOADER_MCUBOOT=y
+        west sign -t imgtool --tool-path bootloader/mcuboot/scripts/imgtool.py --build-dir build
+    
+    - name: List build files
+      run: |
+        ls -la build/zephyr/
     
     - name: Save firmware
       uses: actions/upload-artifact@v4
       with:
         name: firmware
         path: |
-          build/zephyr/zephyr.hex
-          build/zephyr/merged.hex
+          build/zephyr/*.hex
+          build/zephyr/*.bin
+          build/zephyr/zephyr.*
