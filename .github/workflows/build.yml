@@ -1,37 +1,42 @@
 name: Basic Firmware Build
 
-on:  # When this workflow will run
+on:
   push:
-    branches: [ main ]
-  workflow_dispatch:  # Allows manual trigger from GitHub UI
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
-  build:  # Job name
-    runs-on: ubuntu-latest  # Where the job runs
+  build:
+    runs-on: ubuntu-latest
     
-    steps:  # Sequence of tasks
-    - name: Checkout code  # Get your code
+    steps:
+    - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Setup Python  # Setup basic tools
+    - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.9'
     
-    - name: Install west  # Install Nordic's build tool
+    - name: Install west
       run: |
         pip install west
     
-    - name: Get SDK  # Download Nordic SDK
+    - name: Get SDK
       run: |
         west init -m https://github.com/nrfconnect/sdk-nrf --mr v2.7.0
         west update
     
-    - name: Build  # Build your project
+    - name: Clean and prepare build directory
+      run: |
+        rm -rf build/
+        mkdir -p build/
+    
+    - name: Build
       run: |
         west build -b nrf52840dk_nrf52840 .
     
-    - name: Save firmware  # Save both hex files
+    - name: Save firmware
       uses: actions/upload-artifact@v4
       with:
         name: firmware
