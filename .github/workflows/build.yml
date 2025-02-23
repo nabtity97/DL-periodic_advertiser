@@ -66,8 +66,16 @@ jobs:
 
     - name: Initialize west workspace
       run: |
+        cd $GITHUB_WORKSPACE  # Ensure you're in the correct directory
+        if [ -f "west.yml" ]; then
+          echo "West workspace detected."
+        else
+          echo "West workspace not found! Initializing..."
+          west init -m https://github.com/nrfconnect/sdk-nrf --mr v2.7.0
+          west update
+        fi
         west zephyr-export
-        
+    
     - name: Clean and prepare build directory
       run: |
         rm -rf build/
