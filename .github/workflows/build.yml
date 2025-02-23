@@ -2,7 +2,7 @@ name: Basic Firmware Build
 
 on:
   push:
-    branches: [ master ]  # Changed from main to master
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -18,11 +18,12 @@ jobs:
       with:
         python-version: '3.9'
     
-    - name: Install west
+    - name: Install build dependencies
       run: |
+        sudo apt-get update
+        sudo apt-get install -y ninja-build cmake
         pip install west
 
-    # Cache the SDK
     - name: Cache SDK
       id: cache-sdk
       uses: actions/cache@v4
@@ -36,14 +37,12 @@ jobs:
           tools
         key: ${{ runner.os }}-ncs-v2.7.0
     
-    # Only run SDK download if cache missed
     - name: Get SDK
       if: steps.cache-sdk.outputs.cache-hit != 'true'
       run: |
         west init -m https://github.com/nrfconnect/sdk-nrf --mr v2.7.0
         west update
 
-    # Cache the Zephyr SDK toolchain
     - name: Cache Zephyr SDK
       id: cache-zephyr-sdk
       uses: actions/cache@v4
@@ -51,7 +50,6 @@ jobs:
         path: zephyr-sdk-0.16.3
         key: ${{ runner.os }}-zephyr-sdk-0.16.3
     
-    # Only install Zephyr SDK if cache missed
     - name: Install Zephyr SDK
       if: steps.cache-zephyr-sdk.outputs.cache-hit != 'true'
       run: |
